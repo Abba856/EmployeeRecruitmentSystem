@@ -1,28 +1,53 @@
-This project is no longer maintained.<br/>
-===========================
+# Employee Recruitment System
 
-**Employee Recruitment System**<br/>
+## Overview
 
-**Introduction**<br/>
-This repository consists of a simple recruitment system developed using PHP and MySQL which facilites oraganization to post their staffing requirements and view profiles of interested candidates. Also, organization can sort interested candidates and schedule their exams and interviews. It can be helpful for candidates to find requirements in the company and to apply for appropriate job. The primary purpose to develop this system is to optimize the recruitment process for an organization.
+This is a web-based employee recruitment system that allows candidates to register, view job requirements, and submit their profiles. Administrators can manage job requirements and view candidate information.
 
+## Features
 
-**Usage**<br/>
-Using <a href="https://www.apachefriends.org/index.html">XAMPP</a> or <a href="http://www.wampserver.com/en/">WMPP</a> :
-- Copy extracted files to the web server's root directory [most probably, `C:\xampp\htdocs` in XAMPP or `C:\wamp\www` in WAMP].
-- Start APACHE and MySQL servers from XAMPP/WAMP control panel.
-- Go to phpmyadmin from XAMPP/WAMP control panel and create a blank database named 'recruitment'.
-- Import `recruitment.sql` to this database.
-- Change the host, user, password in `connect.php` according to your phpmyadmin credentials.
-- Finally, access the project files throgh url `localhost/<local_dirctory_path>` in your browser.
+- User registration with a 3-step process
+- Job requirement viewing
+- Profile management
+- Admin panel for managing job requirements
+- Feedback system
 
-**Screenshots**<br/>
-<a href = "/../master/others/screenshots/">All screenshots are here</a><br/><br/>
+## Fixed Issues
 
+All deprecated `mysql_*` functions have been replaced with MySQLi prepared statements to ensure compatibility with modern PHP versions and prevent SQL injection vulnerabilities.
 
+## Installation
 
+1. Import the `recruitment.sql` file into your MySQL database
+2. Update the database connection settings in `connect.php`
+3. Place the files in your web server directory
+4. Access the system through your web browser
 
+## Security
 
+- All database queries use prepared statements to prevent SQL injection
+- User input is properly sanitized
+- Session management for authentication
 
+## Files
 
- 
+- **connect.php** - Database connection
+- **login.php** - User login page
+- **registerform1.php** - Personal information registration
+- **registerform2.php** - Academic information registration
+- **registerform3.php** - Account information registration
+- **myaccount.php** - User dashboard
+- **requirementboard.php** - Job requirements listing
+- **viewpersonal.php** - View personal profile
+- **viewacademic.php** - View academic profile
+- **viewaccount.php** - View account profile
+- **adminaccount.php** - Admin dashboard
+- **updaterequirement.php** - Update job requirements
+- **seefeedback.php** - View user feedback (new)
+- **recruitment.sql** - Database schema
+
+## Requirements
+
+- PHP 7.0 or higher
+- MySQL 5.0 or higher
+- Web server (Apache, Nginx, etc.)
