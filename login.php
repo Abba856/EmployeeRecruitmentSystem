@@ -26,13 +26,13 @@ if (isset($_SESSION['email'])) {
             <div class="header-content">
                 <div class="logo">
                     <i class="fas fa-building"></i>
-                    <span>Employee Recruitment System</span>
+                    <span>Login | Employee Recruitment System</span>
                 </div>
                 <ul class="nav-links">
                     <li><a href="login.php" class="active">Login</a></li>
                     <li><a href="registerform1.php">Register</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="about.php">About</a></li>
+                    <li><a href="contact.php">Contact</a></li>
                 </ul>
             </div>
         </div>
@@ -68,9 +68,6 @@ if (isset($_SESSION['email'])) {
                 <p>Don't have an account? <a href="registerform1.php" style="color: var(--primary-color);">Register Now</a></p>
             </div>
             
-            <div style="text-align: center; margin-top: 20px;">
-                <a href="admin.php" style="color: var(--primary-color);">Admin Login</a>
-            </div>
         </div>
     </div>
 

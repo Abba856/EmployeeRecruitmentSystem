@@ -68,9 +68,9 @@ $email = $_SESSION['email'];
 
             <div class="dashboard-card">
                 <i class="fas fa-calendar-alt"></i>
-                <h3>Upcoming Events</h3>
-                <p>Check scheduled interviews and events</p>
-                <a href="#" class="btn" style="margin-top: 15px;">View Events</a>
+                <h3>Scheduled Exams & Interviews</h3>
+                <p>Check your upcoming assessments and interviews</p>
+                <a href="events.php" class="btn" style="margin-top: 15px;">View Schedule</a>
             </div>
 
             <div class="dashboard-card">

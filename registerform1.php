@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - Personal Information | Employee Recruitment System</title>
+    <title>Register | Employee Recruitment System</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="assets/style.css">
 </head>
@@ -55,13 +55,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="header-content">
                 <div class="logo">
                     <i class="fas fa-building"></i>
-                    <span>Employee Recruitment System</span>
+                    <span>Register | Employee Recruitment System</span>
                 </div>
                 <ul class="nav-links">
                     <li><a href="login.php">Login</a></li>
                     <li><a href="registerform1.php" class="active">Register</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="about.php">About</a></li>
+                    <li><a href="contact.php">Contact</a></li>
                 </ul>
             </div>
         </div>

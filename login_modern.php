@@ -31,8 +31,8 @@ if (isset($_SESSION['email'])) {
                 <ul class="nav-links">
                     <li><a href="login_modern.php" class="active">Login</a></li>
                     <li><a href="registerform1.php">Register</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="about.php">About</a></li>
+                    <li><a href="contact.php">Contact</a></li>
                 </ul>
             </div>
         </div>

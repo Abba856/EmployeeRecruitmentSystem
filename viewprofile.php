@@ -43,6 +43,7 @@ $userid = $row['userid'];
                     <li><a href="myaccount.php">Dashboard</a></li>
                     <li><a href="viewprofile.php" class="active">My Profile</a></li>
                     <li><a href="requirementboard.php">Requirements</a></li>
+                    <li><a href="events.php">Events</a></li>
                     <li><a href="helpandfeedback.php">Support</a></li>
                     <li><a href="logout.php">Logout</a></li>
                 </ul>

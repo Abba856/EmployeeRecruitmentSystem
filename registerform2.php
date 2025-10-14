@@ -21,11 +21,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $semester = $_POST['semester'];
     $experience = $_POST['experience'];
       
-    // Using prepared statement to prevent SQL injection
+    // Insert into academic table without userid (auto-increment will create one)
     $query = "INSERT INTO `academic` (university,institute,branch,degree,status,cpi,semester,experience) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $connection->prepare($query);
     $stmt->bind_param("sssssdii", $university, $institute, $branch, $degree, $status, $cpi, $semester, $experience);
     $result = $stmt->execute();
+    
+    if ($result) {
+        // Update the academic table to match the userid from the personal table
+        // First get the latest personal userid
+        $get_userid_query = "SELECT userid FROM personal ORDER BY userid DESC LIMIT 1";
+        $get_userid_result = $connection->query($get_userid_query);
+        if ($get_userid_result->num_rows > 0) {
+            $row = $get_userid_result->fetch_assoc();
+            $userid = $row['userid'];
+            
+            // Update academic table to use the same userid as personal
+            $update_query = "UPDATE academic SET userid = ? WHERE userid = LAST_INSERT_ID()";
+            $update_stmt = $connection->prepare($update_query);
+            $update_stmt->bind_param("i", $userid);
+            $result = $update_stmt->execute();
+        } else {
+            // If no personal record found, registration flow is broken
+            $error = "Registration flow error. Please start from the beginning.";
+            $result = false;
+        }
+    }
     
     if($result) {
         $url = "register3.php";

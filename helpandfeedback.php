@@ -31,6 +31,7 @@ $email = $_SESSION['email'];
                     <li><a href="myaccount.php">Dashboard</a></li>
                     <li><a href="viewprofile.php">My Profile</a></li>
                     <li><a href="requirementboard.php">Requirements</a></li>
+                    <li><a href="events.php">Events</a></li>
                     <li><a href="helpandfeedback.php" class="active">Support</a></li>
                     <li><a href="logout.php">Logout</a></li>
                 </ul>

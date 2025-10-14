@@ -1,131 +1,168 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>register step3</title>
-<link rel="stylesheet" href="main.css" type="text/css" />
-<style type="text/css">
-#apDiv7 {
-	position: absolute;
-	left: 313px;
-	top: 287px;
-	width: 739px;
-	height: 558px;
-	z-index: 6;
-	color: seashell;
-	font-size: 18px;
-	text-transform: capitalize;
-}
-#apDiv7 #registerform fieldset table tr td pre {
-	font-size: 18px;
-}
-#apDiv7 #registerform fieldset table tr td label {
-	font-size: 18px;
-}
-#apDiv7 #registerform fieldset table tr td a {
-	font-size: 14px;
-}
-#apDiv7 #registerform fieldset table tr td {
-	font-size: 16px;
-	font-family: Georgia, "Times New Roman", Times, serif;
-}
-#apDiv7 #registerform fieldset table tr td a {
-	font-size: 14px;
-	color: seashell;
-}
-#apDiv7 #registerform fieldset table tr td a:hover {
-	font-size: 14px;
-	color: #7F99FF;
-}
-#apDiv7 #registerform fieldset h2 {
-	font-size: 20px;
-	font-weight: 100;
-}
-#apDiv4 {
-	position: absolute;
-	left: 341px;
-	top: 216px;
-	width: 673px;
-	height: 31px;
-	z-index: 7;
-	color: seashell;
-	font-size: 16px;
-}
-#apDiv4 h2 {
-	font-weight: 100;
-	text-align: center;
-	font-size: 22px
-}
-#apDiv7 #registerform p {
-	font-size: 24;
-}
-#apDiv7 #registerform table tr td {
-	font-size: 20px;
-	font-weight: lighter;
-}
-</style>
-<script src="register3.js" type="text/javascript"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Account Information | Employee Recruitment System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/style.css">
+    <style>
+        .password-strength {
+            margin-top: 5px;
+            font-size: 0.875rem;
+        }
+    </style>
 </head>
-
 <body>
-<div id="apDiv1"></div>
+    <div class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-building"></i>
+                    <span>Employee Recruitment System</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="login.php">Login</a></li>
+                    <li><a href="registerform1.php">Register</a></li>
+                    <li><a href="about.php">About</a></li>
+                    <li><a href="contact.php">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
- 
-<div id="apDiv7">
-  <form id="registerform3" method="post" name="registerform3" action="registerform3.php">
-    <fieldset>
-      <legend>
-      <h2>Account details</h2>
-      </legend>
-      <table width="100%" height="251" align="center" cellpadding="5" cellspacing="15">
-        <tr>
-          <td align="right"><label title="This field is required">Post you are applying for * : </label></td>
-          <td><select id="post" name="post" required="required" title="post you are applying for" class="formfield3" />
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h2><i class="fas fa-lock"></i> Registration - Step 3: Account Information</h2>
+            </div>
             
-            <option value=""> - - select - -</option>
-            <option value="Web Developer">Web Developer</option>
-            <option value="Mobile App Developer">Mobile App Developer</option>
-            <option value="DataBase Administrator">DataBase Administrator</option>
-            <option value="Search Engine Optimizer">Search Engine Optimizer</option>
-            <option value="Product Manager">Product Manager</option>
-            <option value="HR Manager">HR Manager</option>
-            </select></td>
-        </tr>
-        <tr>
-          <td align="right"><label title="This field is required">Upload Resume * : </label></td>
-          <td><input type="file" id="resume" name="resume"  required="required" title="Upload your resume" class="formfield3" accept="application/msword,application/pdf,application/rtf"/></td>
-        </tr>
-        <tr>
-          <td align="right"><label title="This field is required">Primary Email * : </label></td>
-          <td><input type="email" id="pemail" name="pemail" size="31" required="required" class="formfield" title="Primary Email" placeholder="will be used for login" /></td>
-        </tr>
-        <tr>
-          <td align="right"><label>Secondary Email&nbsp;&nbsp; : </label></td>
-          <td><input type="email" id="semail" name="semail" size="31" class="formfield" title="Secondary Email" placeholder="can be used for account recovery"/></td>
-        </tr>
-        <tr>
-          <td align="right"><label title="This field is required">Set Password * : </label></td>
-          <td><input type="password" autocomplete="off" id="setpassword" name="setpassword" size="20" required="required" class="formfield" title="Password must be 8 characters long."  onkeyup="my();"/>
-            <span id="message1" class="message1"></span></td>
-        </tr>
-        <tr>
-          <td align="right"><label title="This field is required">Confirm Password * : </label></td>
-          <td><input type="password" autocomplete="off" id="confirm" name="confirm" size="20" required="required" class="formfield" title="Confirm your password." onkeyup="checkPass();" />
-            <span id="message2" class="message2"></span></td>
-        </tr>
-      </table>
-    </fieldset>
-    <table width="100%" cellpadding="5" cellspacing="15">
-      <tr>
-        <td align="center" valign="top"><input type="image" id="registersubmit5" name="registersubmit5" src="images/arrow-left.png" onclick="location='register2.php'" title="previous"/>
-          &nbsp;&nbsp;Step 3&nbsp;&nbsp;
-          <input type="image" id="registersubmit6" name="registersubmit6" src="images/arrow-right.png"  title="next"/></td>
-      </tr>
-    </table>
-  </form>
-</div>
-<div id="apDiv4">
-  <h2>Step 3 : Your Account Details</h2>
-</div>
+            <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+                <div style="display: flex; align-items: center;">
+                    <div style="width: 30px; height: 30px; background: var(--light-gray); color: var(--dark-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">1</div>
+                    <div style="width: 50px; height: 2px; background: var(--light-gray); margin: 0 10px;"></div>
+                    <div style="width: 30px; height: 30px; background: var(--light-gray); color: var(--dark-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">2</div>
+                    <div style="width: 50px; height: 2px; background: var(--primary-color); margin: 0 10px;"></div>
+                    <div style="width: 30px; height: 30px; background: var(--primary-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">3</div>
+                </div>
+            </div>
+            
+            <form id="registerform3" method="post" name="registerform3" action="registerform3.php" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="post" class="form-label">Position Applying For *</label>
+                    <select id="post" name="post" class="form-control" required>
+                        <option value="">Select Position</option>
+                        <option value="Web Developer">Web Developer</option>
+                        <option value="Mobile App Developer">Mobile App Developer</option>
+                        <option value="DataBase Administrator">DataBase Administrator</option>
+                        <option value="Search Engine Optimizer">Search Engine Optimizer</option>
+                        <option value="Product Manager">Product Manager</option>
+                        <option value="HR Manager">HR Manager</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="resume" class="form-label">Resume *</label>
+                    <input type="file" id="resume" name="resume" class="form-control" accept="application/msword,application/pdf,application/rtf,.doc,.docx,.pdf" required>
+                    <small class="form-text">Accepted formats: DOC, DOCX, PDF (Max file size: depends on server settings)</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="pemail" class="form-label">Primary Email *</label>
+                    <input type="email" id="pemail" name="pemail" class="form-control" placeholder="Enter your primary email - will be used for login" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="semail" class="form-label">Secondary Email</label>
+                    <input type="email" id="semail" name="semail" class="form-control" placeholder="Enter your secondary email - can be used for account recovery">
+                </div>
+                
+                <div class="form-group">
+                    <label for="setpassword" class="form-label">Password *</label>
+                    <input type="password" id="setpassword" name="setpassword" class="form-control" placeholder="Enter your password" required autocomplete="off">
+                    <div id="message1" class="password-strength"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirm" class="form-label">Confirm Password *</label>
+                    <input type="password" id="confirm" name="confirm" class="form-control" placeholder="Confirm your password" required autocomplete="off">
+                    <div id="message2" class="password-strength"></div>
+                </div>
+                
+                <div class="form-actions">
+                    <a href="register2.php" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        Complete Registration <i class="fas fa-user-check"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <p>&copy; 2025 Employee Recruitment System. All rights reserved.</p>
+        </div>
+    </div>
+    
+    <script src="register3.js" type="text/javascript"></script>
+    <script>
+        // Password matching functionality
+        function checkPass() {
+            const password = document.getElementById('setpassword');
+            const confirm = document.getElementById('confirm');
+            const message2 = document.getElementById('message2');
+            
+            if (password.value === confirm.value && password.value.length > 0) {
+                message2.innerHTML = '<span style="color: green;">Passwords match!</span>';
+                confirm.setCustomValidity('');
+            } else if (confirm.value.length > 0) {
+                message2.innerHTML = '<span style="color: red;">Passwords do not match!</span>';
+                confirm.setCustomValidity('Passwords do not match');
+            } else {
+                message2.innerHTML = '';
+                confirm.setCustomValidity('');
+            }
+        }
+
+        // Basic password strength indicator
+        function my() {
+            const password = document.getElementById('setpassword');
+            const message1 = document.getElementById('message1');
+            const pass = password.value;
+
+            if (pass.length > 0 && pass.length < 8) {
+                message1.innerHTML = '<span style="color: red;">Password must be at least 8 characters long</span>';
+                password.setCustomValidity('Password must be at least 8 characters long');
+            } else if (pass.length >= 8) {
+                message1.innerHTML = '<span style="color: green;">Good password length</span>';
+                password.setCustomValidity('');
+            } else {
+                message1.innerHTML = '';
+                password.setCustomValidity('');
+            }
+            
+            // Recheck password match when password changes
+            if (document.getElementById('confirm').value.length > 0) {
+                checkPass();
+            }
+        }
+
+        // Add event listeners when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const password = document.getElementById('setpassword');
+            const confirm = document.getElementById('confirm');
+            
+            if (password) {
+                password.addEventListener('keyup', my);
+            }
+            
+            if (confirm) {
+                confirm.addEventListener('keyup', checkPass);
+            }
+        });
+    </script>
 </body>
 </html>

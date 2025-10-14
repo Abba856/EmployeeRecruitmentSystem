@@ -1,23 +1,27 @@
 -- phpMyAdmin SQL Dump
--- version 3.2.4
--- http://www.phpmyadmin.net
+-- version 5.2.2-1.fc42
+-- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 01, 2014 at 02:52 PM
--- Server version: 5.1.41
--- PHP Version: 5.3.1
+-- Generation Time: Oct 14, 2025 at 05:15 PM
+-- Server version: 10.11.11-MariaDB
+-- PHP Version: 8.4.13
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `recruitment`
 --
+CREATE DATABASE IF NOT EXISTS `recruitment` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `recruitment`;
 
 -- --------------------------------------------------------
 
@@ -25,8 +29,8 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- Table structure for table `academic`
 --
 
-CREATE TABLE IF NOT EXISTS `academic` (
-  `userid` int(255) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `academic` (
+  `userid` int(255) NOT NULL,
   `university` varchar(255) NOT NULL,
   `institute` varchar(255) NOT NULL,
   `branch` varchar(255) NOT NULL,
@@ -34,18 +38,19 @@ CREATE TABLE IF NOT EXISTS `academic` (
   `status` varchar(255) NOT NULL,
   `cpi` float NOT NULL,
   `semester` int(8) NOT NULL,
-  `experience` int(30) NOT NULL,
-  PRIMARY KEY (`userid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+  `experience` int(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `academic`
 --
 
 INSERT INTO `academic` (`userid`, `university`, `institute`, `branch`, `degree`, `status`, `cpi`, `semester`, `experience`) VALUES
-(3, 'GTU', 'IIT Bombay', 'Informantion Technology', 'M.E/M.Tech', 'pursuing', 4.06, 2, 0),
 (5, 'GTU', 'Silver Oak', 'Informantion Technology', 'B.E/B.Tech', 'pursuing', 6.8, 5, 0),
-(6, 'kkkkkkkkkkkk', 'kkkkkkkkkkkkkkkkkkk', 'Computer science', 'M.E/M.Tech', 'pursuing', 4.05, 6, 0);
+(6, 'kkkkkkkkkkkk', 'kkkkkkkkkkkkkkkkkkk', 'Computer science', 'M.E/M.Tech', 'pursuing', 4.05, 6, 0),
+(7, 'buk', 'kanopoly', 'Computer science', 'B.E/B.Tech', 'completed', 4.5, 0, 3),
+(9, 'buk', 'kanopoly', 'kano', 'B.E/B.Tech', 'completed', 4, 4, 3),
+(11, 'abu', 'ivei', 'Computer Science', 'B.E/B.Tech', 'completed', 7, 0, 4);
 
 -- --------------------------------------------------------
 
@@ -53,26 +58,24 @@ INSERT INTO `academic` (`userid`, `university`, `institute`, `branch`, `degree`,
 -- Table structure for table `account`
 --
 
-CREATE TABLE IF NOT EXISTS `account` (
-  `userid` int(255) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `account` (
+  `userid` int(255) NOT NULL,
   `post` varchar(255) NOT NULL,
   `resume` varchar(255) NOT NULL,
   `pemail` varchar(255) NOT NULL,
   `semail` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  PRIMARY KEY (`userid`),
-  UNIQUE KEY `semail` (`semail`),
-  UNIQUE KEY `pemail` (`pemail`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `account`
 --
 
 INSERT INTO `account` (`userid`, `post`, `resume`, `pemail`, `semail`, `password`) VALUES
-(3, 'Mobile App Developer', 'fips_186-3 - Copy.pdf', 'jainamshah@gmail.com', 'jainam@yahoo.in', '10101010'),
 (5, 'DataBase Administrator', 'software_testing.pdf', 'krupalshah1994@gmail.com', 'krupalshah5@yahoo.in', '10101010'),
-(6, 'Search Engine Optimizer', 'soft.pdf', 'k@k.com', 'k@sa.com', '10101010');
+(6, 'Search Engine Optimizer', 'soft.pdf', 'k@k.com', 'k@sa.com', '10101010'),
+(7, 'Web Developer', 'Employee-Recruitment-System-Project-SRS.pdf', 'abdul.abdul@gmail.com', 'abdul.abdul@gmail.com', '12345678'),
+(9, 'Web Developer', 'No resume uploaded', 'isa@gmail.com', 'isa@gmail.com', '$2y$12$xfytGCJVpVmwMuB9C7IhGekDRKU2rEIkgFGmeryMwmBGWWSwE0ldu');
 
 -- --------------------------------------------------------
 
@@ -80,13 +83,11 @@ INSERT INTO `account` (`userid`, `post`, `resume`, `pemail`, `semail`, `password
 -- Table structure for table `admin`
 --
 
-CREATE TABLE IF NOT EXISTS `admin` (
-  `adminid` int(255) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `admin` (
+  `adminid` int(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  PRIMARY KEY (`adminid`),
-  UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `admin`
@@ -100,11 +101,44 @@ INSERT INTO `admin` (`adminid`, `email`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `exam_candidate_assoc`
+--
+
+CREATE TABLE `exam_candidate_assoc` (
+  `assoc_id` int(11) NOT NULL,
+  `schedule_id` int(11) NOT NULL,
+  `candidate_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `exam_candidate_assoc`
+--
+
+INSERT INTO `exam_candidate_assoc` (`assoc_id`, `schedule_id`, `candidate_id`) VALUES
+(1, 1, 7);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `feedback`
+--
+
+CREATE TABLE `feedback` (
+  `id` int(11) NOT NULL,
+  `userid` int(255) NOT NULL,
+  `user` varchar(255) NOT NULL,
+  `feedback` text NOT NULL,
+  `date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `personal`
 --
 
-CREATE TABLE IF NOT EXISTS `personal` (
-  `userid` int(255) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `personal` (
+  `userid` int(255) NOT NULL,
   `firstname` varchar(255) NOT NULL,
   `middlename` varchar(255) NOT NULL,
   `lastname` varchar(255) NOT NULL,
@@ -113,35 +147,21 @@ CREATE TABLE IF NOT EXISTS `personal` (
   `state` varchar(255) NOT NULL,
   `statespecify` varchar(255) NOT NULL,
   `city` varchar(255) NOT NULL,
-  `cityspecify` varchar(255) NOT NULL,
-  PRIMARY KEY (`userid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+  `cityspecify` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `personal`
 --
 
 INSERT INTO `personal` (`userid`, `firstname`, `middlename`, `lastname`, `gender`, `birthdate`, `state`, `statespecify`, `city`, `cityspecify`) VALUES
-(3, 'jainam', 'hsbhai', 'shah', 'male', '2014-03-31', 'Goa', '', 'Agra', ''),
 (5, 'krupal', 'harshadbhai', 'shah', 'male', '1994-01-26', 'Gujarat', '', 'Ahmedabad', ''),
 (6, 'krupal', 'kkkkkkkkkkk', 'kkkkkkk', 'male', '2014-05-20', 'Chandigarh', '', 'Mumbai', ''),
-(7, 'krupal', 'kkkkkkkkkkk', 'kkkkkkkkkk', 'male', '2014-05-13', 'Gujarat', '', 'Alleppey', '');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `feedback`
---
-
-CREATE TABLE IF NOT EXISTS `feedback` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `userid` int(255) NOT NULL,
-  `user` varchar(255) NOT NULL,
-  `feedback` text NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  FOREIGN KEY (`userid`) REFERENCES `personal` (`userid`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+(7, 'krupal', 'kkkkkkkkkkk', 'kkkkkkkkkk', 'male', '2014-05-13', 'Gujarat', '', 'Alleppey', ''),
+(8, 'abdul', 'abdul', 'ahmad', 'male', '1999-02-03', 'Maharashtra', '', 'Bangalore', ''),
+(9, 'ISA', 'ISA', 'ISA', 'male', '2000-02-03', 'Tamil Nadu', '', 'Ahmedabad', ''),
+(10, 'a', 'a', 'a', 'male', '2000-02-03', 'Delhi', '', 'Alleppey', ''),
+(11, 'ab', 'ab', 'ab', 'male', '2001-02-03', 'Goa', '', 'Chennai', '');
 
 -- --------------------------------------------------------
 
@@ -149,13 +169,13 @@ CREATE TABLE IF NOT EXISTS `feedback` (
 -- Table structure for table `requirement`
 --
 
-CREATE TABLE IF NOT EXISTS `requirement` (
+CREATE TABLE `requirement` (
   `postname` varchar(255) NOT NULL,
   `vacancies` int(255) NOT NULL,
   `reqexperience` int(255) NOT NULL,
   `minsalary` int(255) NOT NULL,
   `maxsalary` int(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `requirement`
@@ -163,11 +183,132 @@ CREATE TABLE IF NOT EXISTS `requirement` (
 
 INSERT INTO `requirement` (`postname`, `vacancies`, `reqexperience`, `minsalary`, `maxsalary`) VALUES
 ('Web Developer', 20, 2, 26000, 28000),
-('Mobile App Developer', 7, 5, 4000, 6000),
+('Mobile App Developer', 5, 3, 5000, 10000),
 ('DataBase Administrator', 2, 5, 21500, 24500),
 ('Search Engine Optimizer', 5, 4, 3000, 6000),
 ('Product Manager', 4, 7, 13000, 15000),
 ('HR Manager', 3, 0, 3000, 6000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `scheduled_exams`
+--
+
+CREATE TABLE `scheduled_exams` (
+  `schedule_id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `type` varchar(50) NOT NULL,
+  `exam_datetime` datetime NOT NULL,
+  `duration` int(11) NOT NULL,
+  `location` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `scheduled_exams`
+--
+
+INSERT INTO `scheduled_exams` (`schedule_id`, `title`, `type`, `exam_datetime`, `duration`, `location`, `created_at`) VALUES
+(1, 'aseR', 'technical', '2025-10-16 03:03:00', 35, 'DFFDGD', '2025-10-14 16:58:21');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `academic`
+--
+ALTER TABLE `academic`
+  ADD PRIMARY KEY (`userid`);
+
+--
+-- Indexes for table `account`
+--
+ALTER TABLE `account`
+  ADD PRIMARY KEY (`userid`),
+  ADD UNIQUE KEY `semail` (`semail`),
+  ADD UNIQUE KEY `pemail` (`pemail`);
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`adminid`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Indexes for table `exam_candidate_assoc`
+--
+ALTER TABLE `exam_candidate_assoc`
+  ADD PRIMARY KEY (`assoc_id`),
+  ADD KEY `schedule_id` (`schedule_id`),
+  ADD KEY `candidate_id` (`candidate_id`);
+
+--
+-- Indexes for table `feedback`
+--
+ALTER TABLE `feedback`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `userid` (`userid`);
+
+--
+-- Indexes for table `personal`
+--
+ALTER TABLE `personal`
+  ADD PRIMARY KEY (`userid`);
+
+--
+-- Indexes for table `scheduled_exams`
+--
+ALTER TABLE `scheduled_exams`
+  ADD PRIMARY KEY (`schedule_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `academic`
+--
+ALTER TABLE `academic`
+  MODIFY `userid` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `account`
+--
+ALTER TABLE `account`
+  MODIFY `userid` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `adminid` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `exam_candidate_assoc`
+--
+ALTER TABLE `exam_candidate_assoc`
+  MODIFY `assoc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `feedback`
+--
+ALTER TABLE `feedback`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `personal`
+--
+ALTER TABLE `personal`
+  MODIFY `userid` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `scheduled_exams`
+--
+ALTER TABLE `scheduled_exams`
+  MODIFY `schedule_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
@@ -184,6 +325,20 @@ ALTER TABLE `academic`
 --
 ALTER TABLE `account`
   ADD CONSTRAINT `account_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `personal` (`userid`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `exam_candidate_assoc`
+--
+ALTER TABLE `exam_candidate_assoc`
+  ADD CONSTRAINT `exam_candidate_assoc_ibfk_1` FOREIGN KEY (`schedule_id`) REFERENCES `scheduled_exams` (`schedule_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `exam_candidate_assoc_ibfk_2` FOREIGN KEY (`candidate_id`) REFERENCES `personal` (`userid`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `feedback`
+--
+ALTER TABLE `feedback`
+  ADD CONSTRAINT `feedback_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `personal` (`userid`) ON DELETE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

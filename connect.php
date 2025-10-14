@@ -1,5 +1,5 @@
 <?php
-$connection = new mysqli('localhost', 'root', '', 'recruitment');
+$connection = new mysqli('localhost', 'root', 'root', 'recruitment');
 
 if ($connection->connect_error) {
     die("Database Connection Failed: " . $connection->connect_error);

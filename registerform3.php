@@ -18,11 +18,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $semail = $_POST['semail'];
     $password = $_POST['setpassword'];
       
-    // Using prepared statement to prevent SQL injection
-    $query = "INSERT INTO `account` (post,resume,pemail,semail,password) VALUES (?, ?, ?, ?, ?)";
-    $stmt = $connection->prepare($query);
-    $stmt->bind_param("sssss", $post, $resume, $pemail, $semail, $password);
-    $result = $stmt->execute();
+    // Get the latest userid from personal table (assuming the user just registered in step 1 before this)
+    $get_userid_query = "SELECT userid FROM personal ORDER BY userid DESC LIMIT 1";
+    $get_userid_result = $connection->query($get_userid_query);
+    if ($get_userid_result->num_rows > 0) {
+        $row = $get_userid_result->fetch_assoc();
+        $userid = $row['userid'];
+        
+        // Insert into account table using the same userid
+        $query = "INSERT INTO `account` (post,resume,pemail,semail,password,userid) VALUES (?, ?, ?, ?, ?, ?)";
+        $stmt = $connection->prepare($query);
+        $stmt->bind_param("sssssi", $post, $resume, $pemail, $semail, $password, $userid);
+        $result = $stmt->execute();
+    } else {
+        // If no personal record found, registration flow is broken
+        $msg = "Registration flow error. Please start from the beginning.";
+        $error = $msg . "<br><br>TIP : Verify that you have not registered any account on mentioned primary or secondary email address.";
+        $result = false;
+    }
     
     if($result) {
         $url = "finish.php";

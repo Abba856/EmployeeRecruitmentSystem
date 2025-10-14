@@ -34,6 +34,7 @@ require('connect.php');
                     <li><a href="myaccount.php">Dashboard</a></li>
                     <li><a href="viewprofile.php">My Profile</a></li>
                     <li><a href="requirementboard.php" class="active">Requirements</a></li>
+                    <li><a href="events.php">Events</a></li>
                     <li><a href="helpandfeedback.php">Support</a></li>
                     <li><a href="logout.php">Logout</a></li>
                 </ul>
